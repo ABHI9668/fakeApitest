@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- // <button id="btn" onclick="fetchdata()">Show</button> -->
+
+    <script>
+      async function fetchdata() {
+        const data = await fetch("https://dummyjson.com/users");
+        const json = await data.json();
+        console.log(json.users[0]);
+        const usersData = json.users;
+
+        usersData.map((user) => {
+          const userid = document.createElement("h4");
+          const userfirstName = document.createElement("p");
+          const userLastName = document.createElement("p");
+          const userimage = document.createElement("img");
+          const division = document.createElement("div");
+
+          const userID = document.body.appendChild(userid);
+          const userFirstName = document.body.appendChild(userfirstName);
+          const userlastName = document.body.appendChild(userLastName);
+          const userImage = document.body.appendChild(userimage);
+          const div = document.body.appendChild(division);
+          div.appendChild(userid);
+          div.appendChild(userFirstName);
+          div.appendChild(userlastName);
+          div.appendChild(userImage);
+          document.body.style.display = "flex";
+          document.body.style.flexWrap = "wrap";
+          document.body.style.justifyContent = "space-betweens";
+          div.style.border = "1px solid black";
+          div.style.borderRadius = "10px";
+          div.style.display = "flex";
+          div.style.justifyContent = "center";
+          div.style.alignItems = "center";
+          div.style.width = "280px";
+          div.style.height = "180px";
+          div.style.marginLeft = "100px";
+          div.style.marginBottom = "10px";
+          div.style.backgroundColor = "beige";
+          div.style.cursor="pointer"
+          div.style.fontFamily="Cursive"
+
+          userID.innerText = user.id + ".";
+          userFirstName.innerText = user.firstName + " " + user.lastName;
+          //suserlastName.innerText = user.lastName;
+          userImage.src = user.image;
+          userImage.style.height = "130px";
+          userImage.style.width = "110px";
+        });
+      }
+      fetchdata();
+    </script>
+  </body>
+</html>
